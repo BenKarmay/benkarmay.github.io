@@ -50,7 +50,6 @@ Download your chosen ISO-image to your local machine. In this case I am download
 |  |  |
 | --- | --- |
 | OS | 64-bit Kali Linux 2022.4 |
-| --- | --- |
 | Installer | Complete offline installation with customization, 3.5G |
 | ISO Image | https://cdimage.kali.org/kali-2022.4/kali-linux-2022.4-installer-amd64.iso |
 | SHA256sum | aeb29db6cf1c049cd593351fd5c289c8e01de7e21771070853597dfc23aada28 |
