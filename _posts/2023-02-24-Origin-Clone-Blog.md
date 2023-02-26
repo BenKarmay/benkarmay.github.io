@@ -47,6 +47,8 @@ There are additional techniques for pre-configuring and automating virtual machi
 
 Download your chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder with the link the link below. 
 
+|  |  |
+| --- | --- |
 | OS | 64-bit Kali Linux 2022.4 |
 | --- | --- |
 | Installer | Complete offline installation with customization, 3.5G |
