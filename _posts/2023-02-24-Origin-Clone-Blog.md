@@ -6,8 +6,6 @@ categories:
 tags:
 ---
 
-# VM Transformation
-
 Create and prepare VM clone for template transformation highlighting important sanitation practices. Clone and template can help automate VM production, including their rapid instantiation or tear down. Evolving specialized setups and configurations is organic or prescriptive as desired. Strip down or bulk up whatever the use case requires but there are important baseline delineations that should be known and adhered to as a given. 
 
 ---
