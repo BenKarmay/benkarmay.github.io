@@ -67,8 +67,9 @@ Upload you local copy of  ISO-image to PROXMOX image library. Within PROXMOX API
 
 Create the VM that will be customized for cloning and template creation. Within PROXMOX API click on ‘Create VM’ button and follow the wizard, populating fields as detailed in below example. Change input as required in accordance with your use-case, resources availability, and conventions. 
 
-| General | Node: Proxmox |
+|  |  |
 | --- | --- |
+| General | Node: Proxmox |
 |  | VM ID: 101 (Any number is fine all VM IDs must be unique) |
 |  | Name: kaliOriginOne (Chose any name in line with your naming conventions) |
 |  | Resource Pool: (Leave default if no resource pool setup) |
@@ -90,15 +91,17 @@ Create the VM that will be customized for cloning and template creation. Within 
 
 ### Preliminary setup of newly created VM. From server-view in PROXMOX VE
 
-**Select the VM: > Select: Hardware from Summary drop down: > click Remove** 
+**Select the VM: > Select: Hardware from Summary drop down: > click Remove.**
 
-| Hardware | Remove the CD/DVD Drive |
+|  |  |
 | --- | --- |
+| Hardware | Remove the CD/DVD Drive |
 
 **Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Agent: >Click Edit: > Check box (Use QEMU Agent) and click OK.**
 
-| Options | QEMU Guest Agent: (Enable) |
+|  |  |
 | --- | --- |
+| Options | QEMU Guest Agent: (Enable) |
 
 ---
 
@@ -115,8 +118,9 @@ The VM will boot up for the first time and present an instillation menu/wizard.
 
 (Replace identifying content)
 
-| Language | English |
+|  |  |
 | --- | --- |
+| Language | English |
 | Location | Australia |
 | Key map | American English |
 | Host name | zyto |
@@ -211,8 +215,9 @@ sudo nano /etc/proxychains4.conf
 
 Edit configurations file **proxychains4.conf**
 
-| Comment  | # strict_chain |
+|  |  |
 | --- | --- |
+| Comment  | # strict_chain |
 | UnComment | dynamic_chain |
 | [ProxyList]: Add | socks5  127.0.0.1 9050 |
 
@@ -230,8 +235,9 @@ sudo nano /etc/sysctl.conf
 
 Edit configuration file **sysctl.conf**
 
-| UnComment lines | net.ipv4.ip_forward = 1 |
+|  |  |
 | --- | --- |
+| UnComment lines | net.ipv4.ip_forward = 1 |
 |  | net.ipv6.conf.all.forwarding = 1 |
 
 **Apply changes from terminal session.**
