@@ -117,16 +117,16 @@ The VM will boot up for the first time and present an instillation menu/wizard.
 
 |  |  |
 | --- | --- |
-| Language | <Select language of choice> |
-| Location | <Select country of choice> |
-| Key map | <Select key map of choice> |
-| Host name | <Enter suitable host name use case> |
+| Language | Select language of choice |
+| Location | Select country of choice |
+| Key map | Select key map of choice |
+| Host name | Enter suitable host name use case |
 | Domain Name | .local (or other suitable Domain Name for use case) |
-| Full name for new user | < FirstName LastName > |
-| Name for new user | < UserName > (Can be first name from Full Name) |
-| Password for new user | <suitable password of choice> |
-| Configure clock | <your locations time zone> |
-| Language | <your language of choice> |
+| Full name for new user | FirstName LastName |
+| Name for new user | UserName (Can be first name from Full Name) |
+| Password for new user | Suitable password of choice |
+| Configure clock | locations time zone |
+| Language | Language of choice |
 | Partition disks | (Default) Guided: use entire disk              |
 |  | This will be the 34 GB allocated earlier |
 |  | All files in one partition |
