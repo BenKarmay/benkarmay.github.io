@@ -43,7 +43,7 @@ There are additional techniques for pre-configuring and automating virtual machi
 
 # ISO-image
 
-### **Download ISO-image**
+## **Download ISO-image**
 
 Download your chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder with the link the link below. 
 
@@ -54,7 +54,7 @@ Download your chosen ISO-image to your local machine. In this case I am download
 | ISO Image | https://cdimage.kali.org/kali-2022.4/kali-linux-2022.4-installer-amd64.iso |
 | SHA256sum | aeb29db6cf1c049cd593351fd5c289c8e01de7e21771070853597dfc23aada28 |
 
-### **Upload ISO-image**
+## **Upload ISO-image**
 
 Upload you local copy of  ISO-image to PROXMOX image library. Within PROXMOX API navigate to local node, click on ISO Image, select Upload and follow popup prompts to complete.
 
@@ -62,7 +62,7 @@ Upload you local copy of  ISO-image to PROXMOX image library. Within PROXMOX API
 
 ---
 
-### Create VM from ISO-image
+# Create VM from ISO-image
 
 Create the VM that will be customized for cloning and template creation. Within PROXMOX API click on ‘Create VM’ button and follow the wizard, populating fields as detailed in below example. Change input as required in accordance with your use-case, resources availability, and conventions. 
 
@@ -88,15 +88,15 @@ Create the VM that will be customized for cloning and template creation. Within 
 
 # VM initial setup and OS install
 
-### Preliminary setup of newly created VM. From server-view in PROXMOX VE
+## Setup newly created VM from server-view in PROXMOX VE
 
-**Select the VM: > Select: Hardware from Summary drop down: > click Remove.**
+Select the VM: > Select: Hardware from Summary drop down: > click Remove.
 
 |  |  |
 | --- | --- |
 | Hardware | Remove the CD/DVD Drive |
 
-**Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Agent: >Click Edit: > Check box (Use QEMU Agent) and click OK.**
+Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Agent: >Click Edit: > Check box (Use QEMU Agent) and click OK.
 
 |  |  |
 | --- | --- |
@@ -104,7 +104,7 @@ Create the VM that will be customized for cloning and template creation. Within 
 
 ---
 
-### OS install - First Boot
+# OS install - First Boot
 
 From PROXMOX VE 
 
@@ -115,15 +115,13 @@ The VM will boot up for the first time and present an instillation menu/wizard.
 
 - Select **Manual Install** and follow prompts populating fields as detailed in below example. i.e. Change input as required, according to your preference.
 
-(Replace identifying content)
-
 |  |  |
 | --- | --- |
-| Language | English |
-| Location | Australia |
-| Key map | American English |
-| Host name | zyto |
-| Domain Name | .local |
+| Language | <Select language of choice> |
+| Location | <Select country of choice> |
+| Key map | <Select key map of choice> |
+| Host name | <Enter suitable host name use case> |
+| Domain Name | .local (or other suitable Domain Name for use case) |
 | Full name for new user | < FirstName LastName > |
 | Name for new user | < UserName > (Can be first name from Full Name) |
 | Password for new user | <suitable password of choice> |
@@ -141,29 +139,31 @@ Now can choose to continue to OS login where you are prompted for User Name and 
 
 ---
 
-# Validate, Update & Upgrade OS distribution
+# Validate OS in PVE
 
-**Open a terminal session:**
-
-Validation operating system is successfully running in proxmox virtual environment  
+From terminal session, validate operating system is successfully running in proxmox virtual environment.  
 
 ```bash
 # Confirm VM sucsessfully running in proxmox environment
 cat /proc/cpuinfo
 ```
 
-Complete a full Update & Distribution Upgrade
+---
+
+# Update & Upgrade OS distribution
+
+Complete a full Update & Distribution Upgrade.
 
 ```bash
 # Full update and distrobution upgrade
 sudo apt update && sudo apt dist-upgrade
 ```
 
-### Status check Qemu-Guest-Agent
+---
 
-**Open a terminal session:**
+# Status check Qemu-Guest-Agent
 
-Confirm Qemu-Guest-Agent is installed, alive, and exited
+From terminal session, confirm Qemu-Guest-Agent is installed, alive, and exited.
 
 ```bash
 # Check status of qemu-guest-agent and start start if required
@@ -182,7 +182,7 @@ sudo apt install qemu-guest-agent
 
 UFW (Uncomplicated Fire Wall), quick and user friendly utility to confirm firewall defaults are correct and enabled. To install, complete the following from terminal session.
 
-**Install UFW**
+### **Install UFW**
 
 ```bash
 sudo apt-get install ufw
@@ -191,7 +191,7 @@ sudo ufw enable
 sudo ufw enable 
 ```
 
-**Install GUFW** GUI extension for UFW Firewall utility  
+### **Install GUFW** GUI extension for UFW Firewall utility
 
 ```bash
 sudo apt-get install gufw
@@ -200,7 +200,7 @@ sudo gufw
 
 ---
 
-## Network configuration
+## Network & Connectivity
 
 ### Configure proxychains4
 
@@ -224,7 +224,7 @@ Edit configurations file **proxychains4.conf**
 
 ## Enable IP forwarding
 
-This is optional depending on use case and is only advised for specific use cases. Understand the  security considerations of enabling this feature.
+Optional depending on use case and is only advised for specific use cases. Understand the security considerations of enabling this feature.
 
 Navigate to configuration file **sysctl.conf.**
 
@@ -239,7 +239,7 @@ Edit configuration file **sysctl.conf**
 | UnComment lines | net.ipv4.ip_forward = 1 |
 |  | net.ipv6.conf.all.forwarding = 1 |
 
-**Apply changes from terminal session.**
+Save and apply changes from terminal session.
 
 ```bash
 # Save changes then run command to apply change
@@ -250,9 +250,9 @@ sysctl -p
 
 ## Install Tor Tor Browser-Launcher
 
-(Optional depending on use case)
+*(Optional depending on use case)*
 
-From terminal session run the following commands:
+From terminal session run the following commands.
 
 ```bash
 sudo apt update
@@ -264,17 +264,17 @@ sudo apt install -y tor torbrowser-launcher
 torbrowser-launcher
 ```
 
-Do NOT run as root
+Do NOT run as root!
 
-First time it will download and install Tor Browser including the signature verification
+Initial instantiation will download and install Tor Browser including the signature verification.
 
-Subsequent instantiations using the same command will update and launch Tor Browser
+Subsequent instantiations using the same command will update and launch Tor Browser.
 
 ---
 
 ## **Install alien**
 
-Description: Useful utility that converts RPM packages to DEB packages
+**Description:** Useful utility that converts RPM packages to DEB packages
 
 ```bash
 sudo apt-get install alien
@@ -326,18 +326,19 @@ Will vary depending on your hardware. The default actually works well but I get 
 
 ---
 
-# ! Remove ssh host_keys !
+# Remove ssh host_keys!
 
 This is required because each new vm creates new ssh host_key when they first start. This VM is being prepared for template transformation so existing ssh host_keys must be removed otherwise subsequent VMs will share duplicate ssh host_key. 
 
-| Navigate to ssh folder | cd /etc/ssh |
+|  |  |
 | --- | --- |
+| Navigate to ssh folder | cd /etc/ssh |
 | Remove host keys | sudo rm ssh_host_* |
 | Confirm | ls -l |
 
 ---
 
-# ! Remove machine-id !
+# Remove machine-id!
 
 Every VM must have a unique machine-id. Machine IDs are generated on fist boot of the VM. This VM is being prepared for template transformation so existing machine-id must be removed otherwise subsequent VMs will share duplicate machine-ids.  
 
@@ -388,78 +389,52 @@ sudo apt clean
 sudo apt autoremove
 ```
 
-### ! Shutdown and do NOT restart prior to Full-Cloning or Conversion to Template !
+**Shutdown and do NOT restart prior to Full-Cloning or Conversion to Template!**
 
-### If restart occurs prior to Full-Cloning or Conversion to Template: Repeat PART 4 (Remove ssh Host_Keys, Remove machine-id, Clean up)
+**If restart occurs prior to Full-Cloning or Conversion to Template; Repeat PART 4 (Remove ssh Host_Keys, Remove machine-id, Clean up)**
 
 ---
 
 # Backup clone creation
 
-### Create a backup Clone prior to conversion to template
+**Create a backup Clone prior to conversion to template.**
 
 Template creation is a destructive process so as a precaution, I first make a backup Clone of the VM intended for conversion to template. This way if for some reason the templating process fails or is interrupted, my Origin VM remains intact. 
 
-From Proxmox server view 
+**From Proxmox server view:** Select VM to be full cloned > Right click and select clone > Follow the wizard prompts > Click on Clone to finish.
 
-select VM to be full cloned
-
-Right click and select clone
-
-Follow prompts:
-
-Click Clone
-
-The cloning is complete and you now have an identical backup clone of the vm you intend to convert to a template.   
+The cloning is complete and you now have an identical backup clone of the VM you intend to transform to a template.   
 
 ---
 
 # VM Template Creation
 
-From Proxmox server view. 
+**From Proxmox server view:** Select VM to be converted to a Template > Right click and select Convert to Template > Click Yes to confirm.
 
-Select VM to be converted to a Template.
+You now have a template of your fully setup, configured and customized VM. Create identical VMs in moments from this template that are fully featured, secure, and customized to be fit for purpose. Application, Utilities, connectivity and security already in place with next to no effort. It’s all in the preparation. 
 
-Right click and select Convert to Template.
-
-Click Yes to confirm.
-
-You now have a template of your fully setup, configured and customized VM. 
-
-You can create identical vm in moments and hit the ground running in an OS you are familiar with that will have all your desired features and utilities and connectivity and security already in place with next to no effort. 
-
-It’s all in the preparation. 
+As your machine set up and configuration changes or diversifies over time, you can create a template library of your go to VMs for a given use case or scenario. 
 
 ---
 
-# Create full clone from template
+# Final note
 
-Now bust it open and take it for a spin.
+I hope you have enjoyed this article, gained some benefit, or nudged further thoughts and interest for the subject. This is the basic process I use to ensure I can instantiate a new VM for immediate use with minimal effort. 
 
----
+This article is a general summary of the process and workflow I use. It is not a formal instructional document. It is intended to highlight a few important things to be attentive to when transforming VMs into templates. 
 
-## ? Additional gear to consider adding to template ?
-
-- Install Zen-map
-- 
-
----
-
-This is a basic process I use to ensure I can fire up a new VM for immediate use and minimal effort. As your machine set up and configuration changes or diversifies over time, you can great a library of your go to templates for a given use case or scenario. Template creation is a destructive process so as a precaution, I first make a Full-Clone of the VM to use for template creation. This way if for some reason the templating process fails or is interrupted, my Origin VM remains intact. 
+ 
 
 ---
 
 ## References
 
-The VM install, configuration, Template Creation, cloning and workflow outlined in this article are fairly standard and covered in a plethora of online sources. 
+The VM install, configuration, cloning, template creation, and workflow outlined in this article are fairly standard and covered in many of online sources.  
 
-### Honorable mentions go to:
+These are some key resources I use to advance my knowledge and understanding of the subject. I’d encourage you to explore their work and channels and support their incredibly valuable and generous contribution to the community. 
 
-- **Learn Linux TV** for their brilliant video series on PROXMOX
-- **Sheridan Computers** for an excellent video walk through of bare metal encrypted disk install of Kali Linux.
+**Learn Linux TV** for their brilliant video series on PROXMOX (And so much more!)
 
-I’d encourage you to check out their channels and support their incredibly valuable and generous work however you are able.      
+**Sheridan Computers** for an excellent video walk through of bare metal encrypted disk install of Kali Linux.
 
 ---
-
-This article is a general summary of the process and workflow I use. It is not a formal instructional document. It is intended to highlight a few important things to be attentive to when transforming VMs into templates.
