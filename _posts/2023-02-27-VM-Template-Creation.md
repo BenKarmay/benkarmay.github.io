@@ -10,7 +10,7 @@ Important sanitation procedure for creating secure, performant, and glitch free 
 
 ## Intro
 
-This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of Machine-ID and SSH Host-Key during Virtual Machine creation from a template. We will explore customisation of OS distribution, installing applications and utilities, and optimising system configurations per use case requirements.
+This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of Machine-ID and SSH Host-Key during Virtual Machine creation from a template. We will also explore customisation of OS distribution, installing applications and utilities, and optimising system configurations for use case requirements.
 
 Evolving specialised setups and configurations can be organic or prescriptive as desired. You can strip down or bulk up whatever the use-case requirements but there are important baseline delineations to know and adhere to as a given.
 
@@ -36,11 +36,12 @@ Based on you a known or expected use case: Install and customize applications, u
 - Customise Desktop and Display setting.
 
 # Scope
-This guide and workflow correlates to PROXMOX however the fundamental principles will be similar regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and the entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable.
+This article and workflow correlates to PROXMOX however the fundamental principles will be similar regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and the entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable.
 
 The Kali Linux example used in this article is a Debian based Linux distribution however Ubuntu and most other Linux based distros will be in the ballpark of this article's workflow. Non-Linux operating systems will adhere to the same principals highlighted in this article but implementation will vary.
 
 There are additional techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
+
 
 # ISO-image
 In this section we will download our ISO-image of choice then upload it to the PROXMOX image library.
@@ -48,12 +49,13 @@ In this section we will download our ISO-image of choice then upload it to the P
 ## Download ISO-image
 Download chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder using the link below. 
 
-|   |
-|---|
+|   |   |
+|---|---|
 | OS | 64-bit Kali Linux 2022.4 |
 | Installer | Complete offline installation with customization, 3.5G |
 | ISO Image | https://cdimage.kali.org/kali-2022.4/kali-linux-2022.4-installer-amd64.iso |
 | SHA256sum | aeb29db6cf1c049cd593351fd5c289c8e01de7e21771070853597dfc23aada28 |
+|   |   |
 
 ## Upload ISO-image
 Upload the local copy of  your ISO-image to the PROXMOX image library. Within PROXMOX VI navigate to: local node > click on ISO-mage > select Upload and follow popup prompts to complete.
@@ -64,8 +66,8 @@ Upload the local copy of  your ISO-image to the PROXMOX image library. Within PR
 
 Create the VM that will be customized for cloning and template creation. Within PROXMOX API click on ‘Create VM’ button and follow the wizard, populating fields as detailed in below example. Change input as required in accordance with your use-case, resources availability, and conventions. 
 
-|   |
-|---|
+|   |   |
+|---|---|
 | General | Node: Proxmox |
 |  | VM ID: 101 (Any number is fine all VM IDs must be unique) |
 |  | Name: kaliOriginOne (Chose any name in line with your naming conventions) |
@@ -81,21 +83,24 @@ Create the VM that will be customized for cloning and template creation. Within 
 |  | Cores: 2       (Ensure allocation is within your resource availability) |
 | Memory (MIB) | 32128          (Ensure allocation is within your resource availability) |
 | Network | Leave as default |
+|   |   |
 
 # VM initial setup and OS install
 
 ## Setup newly created VM from server-view in PROXMOX VE
 Select the VM: > Select: Hardware from Summary drop down: > click Remove.
 
-|   |
-|---|
+|   |   |
+|---|---|
 | Hardware | Remove the CD/DVD Drive |
+|   |   |
 
 Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Agent: >Click Edit: > Check box (Use QEMU Agent) and click OK.
 
-|   |
-|---|
+|   |   |
+|---|---|
 | Options | QEMU Guest Agent: (Enable) |
+|   |   |
 
 # OS install - First Boot
 
@@ -108,8 +113,8 @@ The VM will boot up for the first time and present an instillation menu/wizard.
 
 - Select **Manual Install** and follow prompts populating fields as detailed in below example. i.e. Change input as required, according to your preference.
 
-|   |
-|---|
+|   |   |
+|---|---|
 | Language | Select language of choice |
 | Location | Select country of choice |
 | Key map | Select key map of choice |
@@ -127,10 +132,11 @@ The VM will boot up for the first time and present an instillation menu/wizard.
 | Software selection | Use defaults |
 | Install the GRUB boot loader | Select device and enter |
 | Finish the instillation | Continue |
+|   |   |
 
 Now can choose to continue to OS login where you are prompted for User Name and Password. Use the credentials you configured above to log in for the fist time.
 
-# Validate OS in PVE
+## Validate OS in PVE
 
 From terminal session, validate operating system is successfully running in proxmox virtual environment.  
 
@@ -139,7 +145,7 @@ From terminal session, validate operating system is successfully running in prox
 cat /proc/cpuinfo
 ```
 
-# Update & Upgrade OS distribution
+## Update & Upgrade OS distribution
 
 Complete a full Update & Distribution Upgrade.
 
@@ -148,7 +154,7 @@ Complete a full Update & Distribution Upgrade.
 sudo apt update && sudo apt dist-upgrade
 ```
 
-# Status check Qemu-Guest-Agent
+## Status check Qemu-Guest-Agent
 
 From terminal session, confirm Qemu-Guest-Agent is installed, alive, and exited.
 
@@ -161,7 +167,7 @@ systemctl start qemu-guest-agent.service
 sudo apt install qemu-guest-agent 
 ```
 
-# Install Applications and Utilities
+# Install & Configure Applications and Utilities
 
 ## Install Firewall Utilities
 
@@ -197,11 +203,12 @@ sudo nano /etc/proxychains4.conf
 
 Edit configurations file **proxychains4.conf**
 
-|   |
-|---|
+|   |   |
+|---|---|
 | Comment  | # strict_chain |
 | UnComment | dynamic_chain |
 | [ProxyList]: Add | socks5  127.0.0.1 9050 |
+|   |   |
 
 ## Enable IP forwarding
 
@@ -215,10 +222,11 @@ sudo nano /etc/sysctl.conf
 
 Edit configuration file **sysctl.conf**
 
-|   |
-|---|
+|   |   |
+|---|---|
 | UnComment lines | net.ipv4.ip_forward = 1 |
 |  | net.ipv6.conf.all.forwarding = 1 |
+|   |   |
 
 Save and apply changes from terminal session.
 
@@ -297,11 +305,12 @@ Will vary depending on your hardware. The default actually works well but I get 
 
 This is required because each new vm creates new ssh host_key when they first start. This VM is being prepared for template transformation so existing ssh host_keys must be removed otherwise subsequent VMs will share duplicate ssh host_key. 
 
-|   |
-|---|
+|   |   |
+|---|---|
 | Navigate to ssh folder | cd /etc/ssh |
 | Remove host keys | sudo rm ssh_host_* |
 | Confirm | ls -l |
+|   |   |
 
 # Remove machine-id!
 
@@ -391,9 +400,3 @@ These are some key resources I use to advance my knowledge and understanding of 
 **Learn Linux TV** for their brilliant video series on PROXMOX (And so much more!)
 
 **Sheridan Computers** for an excellent video walk through of bare metal encrypted disk install of Kali Linux.
-
-This guide and workflow correlates to PROXMOX however the fundamental principles will be similar regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and the entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable.
-
-The Kali Linux example used in this article is a Debian based Linux distribution however Ubuntu and most other Linux based distros will be in the ballpark of this article's workflow. Non-Linux operating systems will adhere to the same principals highlighted in this article but implementation will vary.
-
-There are additional techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
