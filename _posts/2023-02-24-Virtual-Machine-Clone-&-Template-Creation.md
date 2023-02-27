@@ -1,12 +1,18 @@
 ---
 layout: 
-title: "VM Transformation" 
+title: "Virtual Machine Clone & Template Creation" 
 date: 2023-02-24
 categories:
 tags:
 ---
 
-Create and prepare VM clone for template transformation highlighting important sanitation practices. Clone and template can help automate VM production, including their rapid instantiation or tear down. Evolving specialized setups and configurations is organic or prescriptive as desired. Strip down or bulk up whatever the use case requires but there are important baseline delineations that should be known and adhered to as a given. 
+Important sanitation procedure for secure, performant, and glitch free clones, template, and virtual machine.
+
+# Intro
+
+This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of Machine-ID and SSH Host-Key during Virtual Machine creation from a template. We will explore customisation of OS distribution, installing applications and utilities, and optimising system configurations per use case requirements.
+
+Evolving specialised setups and configurations can be organic or prescriptive as desired. You can strip down or bulk up whatever the use-case requirements but there are important baseline delineations to know and adhere to as a given.
 
 ---
 
@@ -14,29 +20,29 @@ Create and prepare VM clone for template transformation highlighting important s
 
 A template should produce a VM that meets a known baseline setup, configuration, and resource allocation. This will help in advance to produce an optimal, secure, and glitch free VM from your templates.
 
-### **Most importantly**
+## Principle objectives
 
-- **Clear Machine ID:** Every VM needs to have a unique Machine-ID. Clearing Machine-IDs prior to conversion to the template is a must. Leaving Machine-ID designated in the template results in duplicate Machine-IDs for every consequent VM.
-- **Clear all SSH Host-Keys:** A fresh VM when started for the first time will generate a new set of SSH Host Keys. SSH Host-Keys need to be cleared from the system prior to template conversion or risk multiple machines using identical SSH Host-Keys.
-- **Distribution-Upgrade controls:** Ensure prescribed distribution version is maintained during system updates. For rolling version Perform **Full-Update** and **Distribution-Upgrade.**
+These are the principal objectives highlighted in this article but we auction them towards the end of the article to reflect a logical workflow.  
 
-### **More generally**
+- **Clear Machine-ID:** Every VM should have a unique Machine-ID.  Leaving Machine-ID designated in the template results in duplicate Machine-IDs for every consequent VM. Clearing Machine-IDs prior to template creation is a must.
+- **Clear all SSH Host-Keys:** A fresh VM when started for the first time will generate a new set of SSH Host Keys. SSH Host-Keys need to be cleared from the system prior to template creation or risk multiple machines using identical SSH Host-Keys.
+- **Distribution-Upgrade controls:** Maintain prescribed distribution version during system updates. For rolling versions Perform Full-Update and Distribution-Upgrade.
 
-Based on your known or expected use case.
+## Supplementary & optional objectives
 
-- Customise desktop and display configuration.
-- Install applications and utilities.
-- Configure security features.
-- Change network configuration.
+Based on you a known or expected use case: Install and customize applications, utilities, security features, network and connectivity, desktop, and display setting.
+
+- Install Applications and utilities.
+- Enable Security features.
+- Configure Network & Connectivity.
+- Customise Desktop and Display setting.
 
 ---
 
 # Scope
 
-This guide and workflow correlates to PROXMOX however the fundamental principles will be same regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable. 
-
-Kali Linux example used in this article is a Debian based Linux distribution however Ubuntu and most other Linux based distros will be in the ballpark of this guides workflow. Non-Linux operating systems will adhere to the same principals highlighted in this article but implementation will vary. 
-
+This guide and workflow correlates to PROXMOX however the fundamental principles will be similar regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and the entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable.
+The Kali Linux example used in this article is a Debian based Linux distribution however Ubuntu and most other Linux based distros will be in the ballpark of this article's workflow. Non-Linux operating systems will adhere to the same principals highlighted in this article but implementation will vary.
 There are additional techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
 
 ---
@@ -438,3 +444,7 @@ These are some key resources I use to advance my knowledge and understanding of 
 **Sheridan Computers** for an excellent video walk through of bare metal encrypted disk install of Kali Linux.
 
 ---
+
+This guide and workflow correlates to PROXMOX however the fundamental principles will be similar regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and the entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable.
+The Kali Linux example used in this article is a Debian based Linux distribution however Ubuntu and most other Linux based distros will be in the ballpark of this article's workflow. Non-Linux operating systems will adhere to the same principals highlighted in this article but implementation will vary.
+There are additional techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
