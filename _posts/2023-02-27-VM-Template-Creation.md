@@ -6,15 +6,13 @@ categories:
 tags:
 ---
 
-Important sanitation procedure for secure, performant, and glitch free clones, template, and virtual machine.
+Important sanitation procedure for creating secure, performant, and glitch free virtual machine, clones and templates.
 
-# Intro
+## Intro
 
 This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of Machine-ID and SSH Host-Key during Virtual Machine creation from a template. We will explore customisation of OS distribution, installing applications and utilities, and optimising system configurations per use case requirements.
 
 Evolving specialised setups and configurations can be organic or prescriptive as desired. You can strip down or bulk up whatever the use-case requirements but there are important baseline delineations to know and adhere to as a given.
-
----
 
 # Baseline Delineation
 
@@ -37,43 +35,37 @@ Based on you a known or expected use case: Install and customize applications, u
 - Configure Network & Connectivity.
 - Customise Desktop and Display setting.
 
----
-
 # Scope
-
 This guide and workflow correlates to PROXMOX however the fundamental principles will be similar regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and the entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable.
+
 The Kali Linux example used in this article is a Debian based Linux distribution however Ubuntu and most other Linux based distros will be in the ballpark of this article's workflow. Non-Linux operating systems will adhere to the same principals highlighted in this article but implementation will vary.
+
 There are additional techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
 
----
-
 # ISO-image
+In this section we will download our ISO-image of choice then upload it to the PROXMOX image library.
 
-## **Download ISO-image**
+## Download ISO-image
+Download chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder using the link below. 
 
-Download your chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder with the link the link below. 
-
-|  |  |
-| --- | --- |
+|   |
+|---|
 | OS | 64-bit Kali Linux 2022.4 |
 | Installer | Complete offline installation with customization, 3.5G |
 | ISO Image | https://cdimage.kali.org/kali-2022.4/kali-linux-2022.4-installer-amd64.iso |
 | SHA256sum | aeb29db6cf1c049cd593351fd5c289c8e01de7e21771070853597dfc23aada28 |
 
-## **Upload ISO-image**
-
-Upload you local copy of  ISO-image to PROXMOX image library. Within PROXMOX API navigate to local node, click on ISO Image, select Upload and follow popup prompts to complete.
-
+## Upload ISO-image
+Upload the local copy of  your ISO-image to the PROXMOX image library. Within PROXMOX VI navigate to: local node > click on ISO-mage > select Upload and follow popup prompts to complete.
 *There are numerous ways to download, upload and add images that are well worth learning and understanding. This example uses the most simple and transparent process.*  
 
----
 
 # Create VM from ISO-image
 
 Create the VM that will be customized for cloning and template creation. Within PROXMOX API click on ‘Create VM’ button and follow the wizard, populating fields as detailed in below example. Change input as required in accordance with your use-case, resources availability, and conventions. 
 
-|  |  |
-| --- | --- |
+|   |
+|---|
 | General | Node: Proxmox |
 |  | VM ID: 101 (Any number is fine all VM IDs must be unique) |
 |  | Name: kaliOriginOne (Chose any name in line with your naming conventions) |
@@ -90,25 +82,20 @@ Create the VM that will be customized for cloning and template creation. Within 
 | Memory (MIB) | 32128          (Ensure allocation is within your resource availability) |
 | Network | Leave as default |
 
----
-
 # VM initial setup and OS install
 
 ## Setup newly created VM from server-view in PROXMOX VE
-
 Select the VM: > Select: Hardware from Summary drop down: > click Remove.
 
-|  |  |
-| --- | --- |
+|   |
+|---|
 | Hardware | Remove the CD/DVD Drive |
 
 Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Agent: >Click Edit: > Check box (Use QEMU Agent) and click OK.
 
-|  |  |
-| --- | --- |
+|   |
+|---|
 | Options | QEMU Guest Agent: (Enable) |
-
----
 
 # OS install - First Boot
 
@@ -121,8 +108,8 @@ The VM will boot up for the first time and present an instillation menu/wizard.
 
 - Select **Manual Install** and follow prompts populating fields as detailed in below example. i.e. Change input as required, according to your preference.
 
-|  |  |
-| --- | --- |
+|   |
+|---|
 | Language | Select language of choice |
 | Location | Select country of choice |
 | Key map | Select key map of choice |
@@ -143,8 +130,6 @@ The VM will boot up for the first time and present an instillation menu/wizard.
 
 Now can choose to continue to OS login where you are prompted for User Name and Password. Use the credentials you configured above to log in for the fist time.
 
----
-
 # Validate OS in PVE
 
 From terminal session, validate operating system is successfully running in proxmox virtual environment.  
@@ -154,8 +139,6 @@ From terminal session, validate operating system is successfully running in prox
 cat /proc/cpuinfo
 ```
 
----
-
 # Update & Upgrade OS distribution
 
 Complete a full Update & Distribution Upgrade.
@@ -164,8 +147,6 @@ Complete a full Update & Distribution Upgrade.
 # Full update and distrobution upgrade
 sudo apt update && sudo apt dist-upgrade
 ```
-
----
 
 # Status check Qemu-Guest-Agent
 
@@ -179,8 +160,6 @@ systemctl start qemu-guest-agent.service
 # Install and start if required
 sudo apt install qemu-guest-agent 
 ```
-
----
 
 # Install Applications and Utilities
 
@@ -204,8 +183,6 @@ sudo apt-get install gufw
 sudo gufw
 ```
 
----
-
 ## Network & Connectivity
 
 ### Configure proxychains4
@@ -220,13 +197,11 @@ sudo nano /etc/proxychains4.conf
 
 Edit configurations file **proxychains4.conf**
 
-|  |  |
-| --- | --- |
+|   |
+|---|
 | Comment  | # strict_chain |
 | UnComment | dynamic_chain |
 | [ProxyList]: Add | socks5  127.0.0.1 9050 |
-
----
 
 ## Enable IP forwarding
 
@@ -240,8 +215,8 @@ sudo nano /etc/sysctl.conf
 
 Edit configuration file **sysctl.conf**
 
-|  |  |
-| --- | --- |
+|   |
+|---|
 | UnComment lines | net.ipv4.ip_forward = 1 |
 |  | net.ipv6.conf.all.forwarding = 1 |
 
@@ -251,8 +226,6 @@ Save and apply changes from terminal session.
 # Save changes then run command to apply change
 sysctl -p
 ```
-
----
 
 ## Install Tor Tor Browser-Launcher
 
@@ -276,9 +249,7 @@ Initial instantiation will download and install Tor Browser including the signat
 
 Subsequent instantiations using the same command will update and launch Tor Browser.
 
----
-
-## **Install alien**
+## Install alien
 
 **Description:** Useful utility that converts RPM packages to DEB packages
 
@@ -286,17 +257,13 @@ Subsequent instantiations using the same command will update and launch Tor Brow
 sudo apt-get install alien
 ```
 
----
-
-## **Install icedtea**
+## Install icedtea
 
 **Description:** Enhanced performance for java packages in web browser
 
 ```bash
 sudo apt-get install icedtea-netx
 ```
-
----
 
 ## Install Terminator
 
@@ -305,8 +272,6 @@ sudo apt-get install icedtea-netx
 ```bash
 sudo apt-get install terminator
 ```
-
----
 
 ## Install WireGuard VPN
 
@@ -322,27 +287,21 @@ Ensure you do NOT have any public keys, private private keys, pre-shared keys, I
 
 May be acceptable for a direct full clone of a VM in use that you intend to discard for the new full clone.      
 
----
-
 ## Display settings
 
 **Configure from GUI:** Go to Settings > Display > 1920x1080   16:9
 
 Will vary depending on your hardware. The default actually works well but I get excellent use of my screen real estate with this particular configuration.
 
----
-
 # Remove ssh host_keys!
 
 This is required because each new vm creates new ssh host_key when they first start. This VM is being prepared for template transformation so existing ssh host_keys must be removed otherwise subsequent VMs will share duplicate ssh host_key. 
 
-|  |  |
-| --- | --- |
+|   |
+|---|
 | Navigate to ssh folder | cd /etc/ssh |
 | Remove host keys | sudo rm ssh_host_* |
 | Confirm | ls -l |
-
----
 
 # Remove machine-id!
 
@@ -399,8 +358,6 @@ sudo apt autoremove
 
 **If restart occurs prior to Full-Cloning or Conversion to Template; Repeat PART 4 (Remove ssh Host_Keys, Remove machine-id, Clean up)**
 
----
-
 # Backup clone creation
 
 **Create a backup Clone prior to conversion to template.**
@@ -409,9 +366,7 @@ Template creation is a destructive process so as a precaution, I first make a ba
 
 **From Proxmox server view:** Select VM to be full cloned > Right click and select clone > Follow the wizard prompts > Click on Clone to finish.
 
-The cloning is complete and you now have an identical backup clone of the VM you intend to transform to a template.   
-
----
+The cloning is complete and you now have an identical backup clone of the VM you intend to transform to a template.
 
 # VM Template Creation
 
@@ -421,17 +376,11 @@ You now have a template of your fully setup, configured and customized VM. Creat
 
 As your machine set up and configuration changes or diversifies over time, you can create a template library of your go to VMs for a given use case or scenario. 
 
----
-
 # Final note
 
 I hope you have enjoyed this article, gained some benefit, or nudged further thoughts and interest for the subject. This is the basic process I use to ensure I can instantiate a new VM for immediate use with minimal effort. 
 
 This article is a general summary of the process and workflow I use. It is not a formal instructional document. It is intended to highlight a few important things to be attentive to when transforming VMs into templates. 
-
- 
-
----
 
 ## References
 
@@ -443,8 +392,8 @@ These are some key resources I use to advance my knowledge and understanding of 
 
 **Sheridan Computers** for an excellent video walk through of bare metal encrypted disk install of Kali Linux.
 
----
-
 This guide and workflow correlates to PROXMOX however the fundamental principles will be similar regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and the entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable.
+
 The Kali Linux example used in this article is a Debian based Linux distribution however Ubuntu and most other Linux based distros will be in the ballpark of this article's workflow. Non-Linux operating systems will adhere to the same principals highlighted in this article but implementation will vary.
+
 There are additional techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
