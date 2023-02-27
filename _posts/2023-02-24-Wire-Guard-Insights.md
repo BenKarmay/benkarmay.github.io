@@ -6,4 +6,4 @@ categories:
 tags:
 ---
 
-Some amazing content
+Some amazing content coming soon!
