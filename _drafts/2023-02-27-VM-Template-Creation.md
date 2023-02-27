@@ -1,10 +1,10 @@
----
+<!-- ---
 layout: 
 title: "Virtual Machine Clone & Template Creation" 
 date: 2023-02-24
 categories:
 tags:
----
+--- -->
 
 Important sanitation procedure for creating secure, performant, and glitch free virtual machine, clones and templates.
 
