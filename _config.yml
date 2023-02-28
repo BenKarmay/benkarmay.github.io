@@ -21,7 +21,7 @@ timezone: Australia/Victoria
 
 title: Alterior Trace                          # the main title
 
-tagline: Infosec insights   # it will display as the sub-title
+tagline: infosec insights   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   Nonce in position Oceana.
@@ -81,7 +81,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: 'https://github.com/BenKarmay/benkarmay.github.io/blob/main/assets/img/favicons/android-chrome-512x512.png'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
