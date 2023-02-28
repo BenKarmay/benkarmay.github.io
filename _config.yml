@@ -81,7 +81,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://github.com/BenKarmay/benkarmay.github.io/blob/main/assets/img/favicons/bk-avatar.png
+avatar: 'https://github.com/BenKarmay/benkarmay.github.io/blob/main/assets/img/favicons/bk-avatar.png?raw=true'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
