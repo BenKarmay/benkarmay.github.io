@@ -38,7 +38,7 @@ Based on you a known or expected use case: Install and customize applications, u
 # Scope
 This article and workflow correlates to PROXMOX however the fundamental principles will be similar regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and the entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable.
 
-![proxheading](https://github.com/BenKarmay/benkarmay.github.io/blob/main/assets/images/proxmoxheading.png?raw=true){:width="30%"}
+![proxheading](https://github.com/BenKarmay/benkarmay.github.io/blob/main/assets/images/proxmoxheading.png){:width="30%"}
 
 <!-- ![My Image](/path/to/image.png){:width="100%"} -->
 
