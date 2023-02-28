@@ -55,7 +55,6 @@ Download chosen ISO-image to your local machine. In this case I am downloading K
 | Installer | Complete offline installation with customization, 3.5G |
 | ISO Image | https://cdimage.kali.org/kali-2022.4/kali-linux-2022.4-installer-amd64.iso |
 | SHA256sum | aeb29db6cf1c049cd593351fd5c289c8e01de7e21771070853597dfc23aada28 |
-|   |   |
 
 ## Upload ISO-image
 Upload the local copy of  your ISO-image to the PROXMOX image library. Within PROXMOX VI navigate to: local node > click on ISO-mage > select Upload and follow popup prompts to complete.
@@ -83,7 +82,6 @@ Create the VM that will be customized for cloning and template creation. Within 
 |  | Cores: 2       (Ensure allocation is within your resource availability) |
 | Memory (MIB) | 32128          (Ensure allocation is within your resource availability) |
 | Network | Leave as default |
-|   |   |
 
 # VM initial setup and OS install
 
@@ -93,14 +91,12 @@ Select the VM: > Select: Hardware from Summary drop down: > click Remove.
 |   |   |
 |---|---|
 | Hardware | Remove the CD/DVD Drive |
-|   |   |
 
 Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Agent: >Click Edit: > Check box (Use QEMU Agent) and click OK.
 
 |   |   |
 |---|---|
 | Options | QEMU Guest Agent: (Enable) |
-|   |   |
 
 # OS install - First Boot
 
@@ -132,7 +128,6 @@ The VM will boot up for the first time and present an instillation menu/wizard.
 | Software selection | Use defaults |
 | Install the GRUB boot loader | Select device and enter |
 | Finish the instillation | Continue |
-|   |   |
 
 Now can choose to continue to OS login where you are prompted for User Name and Password. Use the credentials you configured above to log in for the fist time.
 
@@ -208,7 +203,6 @@ Edit configurations file **proxychains4.conf**
 | Comment  | # strict_chain |
 | UnComment | dynamic_chain |
 | [ProxyList]: Add | socks5  127.0.0.1 9050 |
-|   |   |
 
 ## Enable IP forwarding
 
@@ -226,7 +220,6 @@ Edit configuration file **sysctl.conf**
 |---|---|
 | UnComment lines | net.ipv4.ip_forward = 1 |
 |  | net.ipv6.conf.all.forwarding = 1 |
-|   |   |
 
 Save and apply changes from terminal session.
 
@@ -310,7 +303,6 @@ This is required because each new vm creates new ssh host_key when they first st
 | Navigate to ssh folder | cd /etc/ssh |
 | Remove host keys | sudo rm ssh_host_* |
 | Confirm | ls -l |
-|   |   |
 
 # Remove machine-id!
 
