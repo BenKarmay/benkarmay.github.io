@@ -8,7 +8,6 @@ tags:
 
 Important sanitation procedure for creating secure, performant, and glitch free virtual machine, clones and templates.
 
-![Proxmox icon](https://raw.githubusercontent.com/BenKarmay/benkarmay.github.io/49a594e4b2f4a8decad35b88a6c4ad9a99fe9c73/assets/img/contentImages/index.svg)
 
 ## Intro
 
