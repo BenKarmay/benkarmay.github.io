@@ -38,7 +38,7 @@ Based on you a known or expected use case: Install and customize applications, u
 # Scope
 This article and workflow correlates to PROXMOX however the fundamental principles will be similar regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and the entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable.
 
-![Proxmox icon](https://raw.githubusercontent.com/BenKarmay/benkarmay.github.io/3d2c023599298a81ac4e029cc3f9b8717a9a3cbc/assets/img/contentImages/proximage.svg)
+![Proxmox icon](https://github.com/BenKarmay/benkarmay.github.io/blob/main/assets/img/contentImages/proxmoxheading.png?raw=true)
 
 The Kali Linux example used in this article is a Debian based Linux distribution however Ubuntu and most other Linux based distros will be in the ballpark of this article's workflow. Non-Linux operating systems will adhere to the same principals highlighted in this article but implementation will vary.
 
