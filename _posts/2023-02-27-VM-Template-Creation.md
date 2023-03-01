@@ -26,6 +26,8 @@ These are the principal objectives highlighted in this article but we auction th
 
 - **Clear Machine-ID:** Every VM should have a unique Machine-ID.  Leaving Machine-ID designated in the template results in duplicate Machine-IDs for every consequent VM. Clearing Machine-IDs prior to template creation is a must.
 
+[Machine-id](#remove-machine-id)
+
 ![Kity Color]({{ "/assets/img/postimages/kitcattwo.png" | relative_url }})
 
 - **Clear all SSH Host-Keys:** A fresh VM when started for the first time will generate a new set of SSH Host Keys. SSH Host-Keys need to be cleared from the system prior to template creation or risk multiple machines using identical SSH Host-Keys.
