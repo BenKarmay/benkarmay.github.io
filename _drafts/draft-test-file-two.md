@@ -2,8 +2,8 @@
 layout: 
 title: "Virtual Machine Clone & Template Creation" 
 date: 2023-02-24
-categories: [Virtual Machine, Hypervisor]
-tags: [machine-id, ssh host-keys, proxmox]
+categories:
+tags:
 ---
 
 Important sanitation procedure for creating secure, performant, and glitch free virtual machines, clones and templates.
@@ -393,3 +393,4 @@ These are some key resources I use to advance my knowledge and understanding of 
 **Learn Linux TV** for their brilliant video series on PROXMOX (And so much more!)
 
 **Sheridan Computers** for an excellent video walk through of bare metal encrypted disk install of Kali Linux.
+
