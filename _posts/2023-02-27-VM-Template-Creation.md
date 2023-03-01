@@ -8,7 +8,7 @@ tags: [machine-id, ssh host-keys, proxmox]
 
 Important sanitation procedure for creating secure, performant, and glitch free virtual machines, clones and templates.
 
-![Prox Logo]({{ "/assets/img/postimages/xlogo.png" | relative_url }}){:hight='200'}
+![Prox Logo]({{ "/assets/img/postimages/proxmox-logo.png" | relative_url }})
 
 ## Intro
 
@@ -26,11 +26,11 @@ These are the principal objectives highlighted in this article but we auction th
 
 - **Clear Machine-ID:** Every VM should have a unique Machine-ID.  Leaving Machine-ID designated in the template results in duplicate Machine-IDs for every consequent VM. Removing Machine-IDs prior to template creation is a must.
 
-![Kity Color]({{ "/assets/img/postimages/kitcattwo.png" | relative_url }}){:hight='200'}
+![Kity Color]({{ "/assets/img/postimages/kitcattwo.png" | relative_url }})
 
 - **Clear all SSH Host-Keys:** A fresh VM when started for the first time will generate a new set of SSH Host Keys. SSH Host-Keys need to be cleared from the system prior to template creation or risk multiple machines using identical SSH Host-Keys.
 
-![Puple Double]({{ "/assets/img/postimages/icantsee.gif" | relative_url }}){:hight='200'}
+![Puple Double]({{ "/assets/img/postimages/icantsee.gif" | relative_url }})
 
 - **Distribution-Upgrade controls:** Maintain prescribed distribution version during system updates. For rolling versions perform Full-Update and Distribution-Upgrade.
 
@@ -50,7 +50,7 @@ The Kali Linux ISO-image example used in this article is a Debian based Linux di
 
 There are additional techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
 
-![Face Reflect]({{ "/assets/img/postimages/norasmall.png" | relative_url }}){:hight='200'}
+![Face Reflect]({{ "/assets/img/postimages/norasmall.png" | relative_url }})
 
 # ISO-image
 In this section we will download our ISO-image of choice then upload it to the PROXMOX image library.
