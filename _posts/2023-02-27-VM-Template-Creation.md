@@ -24,9 +24,7 @@ A template should produce a VM that meets a known baseline setup, configuration,
 
 These are the principal objectives highlighted in this article but we auction them towards the end of the article to reflect a logical workflow.  
 
-- **Clear Machine-ID:** Every VM should have a unique Machine-ID.  Leaving Machine-ID designated in the template results in duplicate Machine-IDs for every consequent VM. Clearing Machine-IDs prior to template creation is a must.
-
-[Machine-id](#remove-machine-id)
+- **Clear Machine-ID:** Every VM should have a unique Machine-ID.  Leaving Machine-ID designated in the template results in duplicate Machine-IDs for every consequent VM. [Removing Machine-IDs](#remove-machine-id) prior to template creation is a must.
 
 ![Kity Color]({{ "/assets/img/postimages/kitcattwo.png" | relative_url }})
 
