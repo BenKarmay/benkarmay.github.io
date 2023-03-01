@@ -8,11 +8,11 @@ tags: [machine-id, ssh host-keys, proxmox]
 
 Important sanitation procedure for creating secure, performant, and glitch free virtual machines, clones and templates.
 
-![Prox Logo]({{ "/assets/img/postimages/xlogo.png" | relative_url }})
+![Prox Logo]({{ "/assets/img/postimages/xlogo.png" | relative_url }}){:hight='200'}
 
 ## Intro
 
-This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of Machine-ID and SSH Host-Key during Virtual Machine creation from a template. We will also explore customisation of OS distribution, installing applications and utilities, and optimising system configurations for use case requirements.
+This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of [Machine-ID](#remove-machine-id) and [SSH Host-Key](#remove-ssh-host_keys) during Virtual Machine creation from a template. We will also explore customisation of OS distribution, installing applications and utilities, and optimising system configurations for use case requirements.
 
 Evolving specialised setups and configurations can be organic or prescriptive as desired. You can strip down or bulk up whatever the use-case requirements but there are important baseline delineations to know and adhere to as a given.
 
