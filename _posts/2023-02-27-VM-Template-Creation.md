@@ -3,7 +3,7 @@ layout:
 title: "Virtual Machine Clone & Template Creation" 
 date: 2023-02-24
 categories: [Virtual Machine, Hypervisor]
-tags: [machine-id, ssh host-keys]
+tags: [machine-id, ssh host-keys, proxmox]
 ---
 
 Important sanitation procedure for creating secure, performant, and glitch free virtual machine, clones and templates.

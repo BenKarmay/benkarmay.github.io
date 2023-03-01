@@ -20,10 +20,10 @@ timezone: Australia/Victoria
 
 title: Alterior Trace                          # the main title
 
-tagline: infosec insights   # it will display as the sub-title
+tagline: avail infosec   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-
+Mitigate against exploitation by repealing exploitation in your personal, professional and political culture.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://benkarmay.github.io'
