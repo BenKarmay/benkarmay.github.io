@@ -8,7 +8,8 @@ tags: [machine-id, ssh host-keys, proxmox]
 
 Important sanitation procedure for creating secure, performant, and glitch free virtual machines, clones and templates.
 
-![Pros Logo](/github.com/BenKarmay/benkarmay.github.io/blob/main/assets/img/postimages/m_logo.png?raw=true)
+![Pros Logo](https://github.com/BenKarmay/benkarmay.github.io/blob/main/assets/img/postimages/m_logo.png)
+
 
 ## Intro
 
