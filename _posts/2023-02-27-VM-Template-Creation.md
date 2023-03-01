@@ -30,7 +30,7 @@ These are the principal objectives highlighted in this article but we auction th
 
 - **Clear all SSH Host-Keys:** A fresh VM when started for the first time will generate a new set of SSH Host Keys. SSH Host-Keys need to be cleared from the system prior to template creation or risk multiple machines using identical SSH Host-Keys.
 
-![Puple Double]({{ "/assets/img/postimages/icantsee.gif" | relative_url }})
+<!-- ![Puple Double]({{ "/assets/img/postimages/icantsee.gif" | relative_url }}) -->
 
 - **Distribution-Upgrade controls:** Maintain prescribed distribution version during system updates. For rolling versions perform Full-Update and Distribution-Upgrade.
 
