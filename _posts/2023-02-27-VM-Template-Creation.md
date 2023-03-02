@@ -6,51 +6,56 @@ categories: [Virtual Machine, Hypervisor]
 tags: [machine-id, ssh host-keys, proxmox]
 ---
 
-Important sanitation procedure for creating secure, performant, and glitch free virtual machines, clones and templates.
+Achieving definitive Virtual Machine rendition for clone and template creation.    
 
-![Prox Logo]({{ "/assets/img/postimages/proxmox-logo.png" | relative_url }})
+<!-- Insert imagae portraying VM/clone rendition -->
+![hupe-prox-kali]({{ "/assets/img/postimages/narcovintage.png" | relative_url }})
 
-## Intro
+# Prerequisites and Scope
+Familiarity with Type 1 Hypervisors, in particular Proxmox will help give context to some of this articles content. Proxmox Virtual Environment and Kali Linux OS are enlisted for our subject exploration but with allowance for some variation, this content will translate well to other hypervisor platforms, ISO-images, and distributions. There are many other techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
 
+<!-- Insert and image in a row of Type 1 hypervisor/Proxmox/Kali Linux -->
+![hupe-prox-kali]({{ "/assets/img/postimages/threerowsize.png" | relative_url }})
+
+# Intro
 This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of [Machine-ID](#remove-machine-id) and [SSH Host-Key](#remove-ssh-host_keys) during Virtual Machine creation from a template. We will also explore customisation of OS distribution, installing applications and utilities, and optimising system configurations for use case requirements.
 
 Evolving specialised setups and configurations can be organic or prescriptive as desired. You can strip down or bulk up whatever the use-case requirements but there are important baseline delineations to know and adhere to as a given.
 
 # Baseline Delineation
-
 A template should produce a VM that meets a known baseline setup, configuration, and resource allocation. This will help in advance to produce an optimal, secure, and glitch free VM from your templates.
 
-## Principle objectives
-
-These are the principal objectives highlighted in this article but we auction them towards the end of the article to reflect a logical workflow.  
+# Principle Objectives
+These are the principal objectives highlighted but we auction them towards the end of the article to reflect a logical workflow.  
 
 - **Clear Machine-ID:** Every VM should have a unique Machine-ID.  Leaving Machine-ID designated in the template results in duplicate Machine-IDs for every consequent VM. Removing Machine-IDs prior to template creation is a must.
 
-![Kity Color]({{ "/assets/img/postimages/kitcattwo.png" | relative_url }})
+<!-- Insert imagae portraying ??? -->
+![Kity Color]({{ "/assets/img/postimages/kitvintagesize.png" | relative_url }})
 
 - **Clear all SSH Host-Keys:** A fresh VM when started for the first time will generate a new set of SSH Host Keys. SSH Host-Keys need to be cleared from the system prior to template creation or risk multiple machines using identical SSH Host-Keys.
 
-![Puple Double]({{ "/assets/img/postimages/icantsee.gif" | relative_url }})
+<!-- Insert imagae portraying ??? -->
+![Puple Double]({{ "/assets/img/postimages/icanseetwice.gif" | relative_url }})
 
 - **Distribution-Upgrade controls:** Maintain prescribed distribution version during system updates. For rolling versions perform Full-Update and Distribution-Upgrade.
 
-## Supplementary & optional objectives
+# Supplementary & optional objectives
 
 Based on a known or expected use case: Install and customize applications, utilities, security features, network and connectivity, desktop, and display setting.
 
-- Install Applications and utilities.
-- Enable Security features.
-- Configure Network & Connectivity.
-- Customise Desktop and Display setting.
+- [UFW (Uncomplicated Fire Wall)](#install-firewall-utilities)
+- [proxychains4](#configure-proxychains4)
+- [IP forwarding](#configure-proxychains4)
+- [Tor Tor Browser-Launcher](#install-tor-tor-browser-launcher)
+- [alien](#install-alien)
+- [icedtea](#install-icedtea)
+- [Terminator](#install-terminator)
+- [WireGuard VPN](#install-wireguard-vpn)
+- [Display settings](#display-settings)
 
-# Scope
-This article and workflow correlates to PROXMOX however the fundamental principles will be similar regardless of hypervisor. Cloning and template creation reference PVE (PROXMOX Virtual Environment) being the control centre API for admins and users encompassing access control, resource management, and the entirety of hypervisor features. UX will vary across hypervisors, but their features will be fairly consistent and recognizable.
-
-The Kali Linux ISO-image example used in this article is a Debian based Linux distribution however Ubuntu and most other Linux based distros will be in the ballpark of this article's workflow. Non-Linux operating systems will adhere to the same principals highlighted in this article but implementation will vary.
-
-There are additional techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
-
-![Face Reflect]({{ "/assets/img/postimages/norasmall.png" | relative_url }})
+<!-- Insert imagae portraying ??? -->
+<!-- ![Face Reflect]({{ "/assets/img/postimages/.png" | relative_url }}) -->
 
 # ISO-image
 In this section we will download our ISO-image of choice then upload it to the PROXMOX image library.
@@ -174,11 +179,11 @@ sudo apt install qemu-guest-agent
 
 # Install & Configure Applications and Utilities
 
-## Install Firewall Utilities
+# Install Firewall Utilities
 
 UFW (Uncomplicated Fire Wall), quick and user friendly utility to confirm firewall defaults are correct and enabled. To install, complete the following from terminal session.
 
-### **Install UFW**
+## **Install UFW**
 
 ```bash
 sudo apt-get install ufw
@@ -187,16 +192,16 @@ sudo ufw enable
 sudo ufw enable 
 ```
 
-### **Install GUFW** GUI extension for UFW Firewall utility
+## **Install GUFW** GUI extension for UFW Firewall utility
 
 ```bash
 sudo apt-get install gufw
 sudo gufw
 ```
 
-## Network & Connectivity
+# Network & Connectivity
 
-### Configure proxychains4
+# Configure proxychains4
 
 *(Optional depending on use case)*
 
@@ -214,7 +219,7 @@ Edit configurations file **proxychains4.conf**
 | UnComment | dynamic_chain |
 | [ProxyList]: Add | socks5  127.0.0.1 9050 |
 
-## Enable IP forwarding
+# Enable IP forwarding
 
 Optional depending on use case and is only advised for specific use cases. Understand the security considerations of enabling this feature.
 
@@ -238,7 +243,7 @@ Save and apply changes from terminal session.
 sysctl -p
 ```
 
-## Install Tor Tor Browser-Launcher
+# Install Tor Tor Browser-Launcher
 
 *(Optional depending on use case)*
 
@@ -260,7 +265,7 @@ Initial instantiation will download and install Tor Browser including the signat
 
 Subsequent instantiations using the same command will update and launch Tor Browser.
 
-## Install alien
+# Install alien
 
 **Description:** Useful utility that converts RPM packages to DEB packages
 
@@ -268,7 +273,7 @@ Subsequent instantiations using the same command will update and launch Tor Brow
 sudo apt-get install alien
 ```
 
-## Install icedtea
+# Install icedtea
 
 **Description:** Enhanced performance for java packages in web browser
 
@@ -276,7 +281,7 @@ sudo apt-get install alien
 sudo apt-get install icedtea-netx
 ```
 
-## Install Terminator
+# Install Terminator
 
 **Description:** User friendly and highly customizable terminal emulator
 
@@ -284,7 +289,7 @@ sudo apt-get install icedtea-netx
 sudo apt-get install terminator
 ```
 
-## Install WireGuard VPN
+# Install WireGuard VPN
 
 Description:  Fast and simple opensource VPN implemented with built in security guarantees
 
@@ -298,7 +303,7 @@ Ensure you do NOT have any public keys, private private keys, pre-shared keys, I
 
 May be acceptable for a direct full clone of a VM in use that you intend to discard for the new full clone.      
 
-## Display settings
+# Display settings
 
 **Configure from GUI:** Go to Settings > Display > 1920x1080   16:9
 
