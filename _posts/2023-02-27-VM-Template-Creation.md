@@ -61,21 +61,22 @@ Based on a known or expected use case: Install and customize applications, utili
 - [Display settings](#display-settings)
 
 <!-- Insert imagae portraying: Applications and Utilities -->
-<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+![app-tool-kit]({{ "/assets/img/postimages/toolkitwovintsize.png" | relative_url }})
 <!-- _????_ -->
 
 # ISO-image
 In this section we will download our ISO-image of choice then upload it to the PROXMOX image library.
 
 <!-- Insert imagae portraying: ISO-image icon -->
-<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+![iso-image-icon]({{ "/assets/img/postimages/isoimagevintasize.png" | relative_url }})
 <!-- _????_ -->
 
 ## Download ISO-image
 Download chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder using the link below.
 
 <!-- Insert imagae portraying: Screen shot of Source download -->
-<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+![url-source]({{ "/assets/img/postimages/urhttsized.png" | relative_url }})
+![image-source]({{ "/assets/img/postimages/downloadvintsize.png" | relative_url }})
 <!-- _????_ -->
 
 |   |   |
@@ -89,7 +90,7 @@ Download chosen ISO-image to your local machine. In this case I am downloading K
 Upload the local copy of  your ISO-image to the PROXMOX image library. Within PROXMOX VE navigate to: local node > click on ISO-mage > select Upload and follow popup prompts to complete.
 
 <!-- Insert imagae portraying: Screen shot of PVE image upload -->
-<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+![uploadimage]({{ "/assets/img/postimages/upisovresize.png" | relative_url }})
 <!-- _????_ -->
 
 *There are numerous methods used to download, upload and add images that are well worth learning and understanding. This example uses asimple and transparent process.*  
@@ -101,6 +102,10 @@ Create the VM that will be customized for cloning and template creation. Within 
 
 <!-- Insert imagae portraying: A VM being created -->
 ![vm-window-popout]({{ "/assets/img/postimages/screenpopsize.png" | relative_url }})
+<!-- _????_ -->
+
+<!-- Insert imagae portraying: Screen shot of ISO setup within PVE  -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
 <!-- _????_ -->
 
 |   |   |
