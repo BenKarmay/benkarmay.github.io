@@ -6,7 +6,7 @@ categories: [Virtual Machine, Hypervisor]
 tags: [machine-id, ssh host-keys, proxmox]
 ---
 
-Achieving definitive Virtual Machine rendition for clone and template creation.    
+Achieving definitive [Virtual Machine rendition](#create-vm-from-iso-image) for [clone](#backup-clone-creation) and [template creation](#vm-template-creation).    
 
 <!-- Insert imagae portraying VM/clone rendition -->
 ![Clone-Face]({{ "/assets/img/postimages/narcovintage.png" | relative_url }})
@@ -14,11 +14,11 @@ Achieving definitive Virtual Machine rendition for clone and template creation.
 # Prerequisites and Scope
 Familiarity with Type 1 Hypervisors, in particular Proxmox will help give context to some of this articles content. Proxmox Virtual Environment and Kali Linux OS are enlisted for our subject exploration but with allowance for some variation, this content will translate well to other hypervisor platforms, ISO-images, and distributions. There are many other techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
 
-<!-- Insert and image in a row of Type 1 hypervisor/Proxmox/Kali Linux -->
+<!-- Insert three image in a row: Type 1 hypervisor/Proxmox/Kali Linux -->
 ![hype-prox-kali]({{ "/assets/img/postimages/threerowsize.png" | relative_url }})
 
 # Intro
-This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of [Machine-ID](#remove-machine-id) and [SSH Host-Key](#remove-ssh-host_keys) during Virtual Machine creation from a template. We will also explore customisation of OS distribution, installing applications and utilities, and optimising system configurations for use case requirements.
+This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of [Machine-IDs](#remove-machine-id) and [SSH Host-Keys](#remove-ssh-host_keys) during Virtual Machine creation from a template. We will also explore customisation of OS distribution, installing applications and utilities, and optimising system configuration for use case.
 
 Evolving specialised setups and configurations can be organic or prescriptive as desired. You can strip down or bulk up whatever the use-case requirements but there are important baseline delineations to know and adhere to as a given.
 
@@ -26,19 +26,25 @@ Evolving specialised setups and configurations can be organic or prescriptive as
 A template should produce a VM that meets a known baseline setup, configuration, and resource allocation. This will help in advance to produce an optimal, secure, and glitch free VM from your templates.
 
 # Principle Objectives
-These are the principal objectives highlighted but we auction them towards the end of the article to reflect a logical workflow.  
+These are the principal objectives highlighted but we action them downstream to reflect a logical workflow.  
 
-- **Clear Machine-ID:** Every VM should have a unique Machine-ID.  Leaving Machine-ID designated in the template results in duplicate Machine-IDs for every consequent VM. Removing Machine-IDs prior to template creation is a must.
+- **Clear Machine-ID:** Leaving Machine-IDs designated in a template results in duplicate Machine-IDs for every consequent VM. Removing Machine-IDs prior to template creation is a must.
 
-<!-- Insert imagae portraying ??? -->
+<!-- Insert imagae portraying mashines with differnt IDs -->
 ![Kity-Color]({{ "/assets/img/postimages/kitvintagesize.png" | relative_url }})
+_Every VM should be tainted with a unique Machine-ID_
 
-- **Clear all SSH Host-Keys:** A fresh VM when started for the first time will generate a new set of SSH Host Keys. SSH Host-Keys need to be cleared from the system prior to template creation or risk multiple machines using identical SSH Host-Keys.
+- **Clear all SSH Host-Keys:** A fresh VM when started for the first time will generate a new set of SSH Host Keys. SSH Host-Keys need to be cleared prior to template creation or risk multiple machines using identical SSH Host-Keys.
 
-<!-- Insert imagae portraying ??? -->
+<!-- Insert imagae portrayingz:Multiple machines attempting to use the same ssh host key ??? -->
 ![Eyes-Double]({{ "/assets/img/postimages/icanseetwice.gif" | relative_url }})
+_Multiple Hosts using identical Keys gets weird quickly_ 
 
 - **Distribution-Upgrade controls:** Maintain prescribed distribution version during system updates. For rolling versions perform Full-Update and Distribution-Upgrade.
+
+<!-- Insert imagae portraying: Distribution Versioning ??? -->
+<!-- ![sescriptivename]({{ "/assets/img/postimages/????.png" | relative_url }})
+_????_ -->
 
 # Supplementary & optional objectives
 
@@ -54,14 +60,23 @@ Based on a known or expected use case: Install and customize applications, utili
 - [WireGuard VPN](#install-wireguard-vpn)
 - [Display settings](#display-settings)
 
-<!-- Insert imagae portraying ??? -->
-<!-- ![Face Reflect]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- Insert imagae portraying: Applications and Utilities -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- _????_ -->
 
 # ISO-image
 In this section we will download our ISO-image of choice then upload it to the PROXMOX image library.
 
+<!-- Insert imagae portraying: ISO-image icon -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- _????_ -->
+
 ## Download ISO-image
-Download chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder using the link below. 
+Download chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder using the link below.
+
+<!-- Insert imagae portraying: Screen shot of Source download -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- _????_ -->
 
 |   |   |
 |---|---|
@@ -73,12 +88,20 @@ Download chosen ISO-image to your local machine. In this case I am downloading K
 ## Upload ISO-image
 Upload the local copy of  your ISO-image to the PROXMOX image library. Within PROXMOX VE navigate to: local node > click on ISO-mage > select Upload and follow popup prompts to complete.
 
-*There are numerous ways to download, upload and add images that are well worth learning and understanding. This example uses the most simple and transparent process.*  
+<!-- Insert imagae portraying: Screen shot of PVE image upload -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- _????_ -->
+
+*There are numerous methods used to download, upload and add images that are well worth learning and understanding. This example uses asimple and transparent process.*  
 
 
 # Create VM from ISO-image
 
 Create the VM that will be customized for cloning and template creation. Within PROXMOX API click on ‘Create VM’ button and follow the wizard, populating fields as detailed in below example. Change input as required in accordance with your use-case, resources availability, and conventions. 
+
+<!-- Insert imagae portraying: A VM being created -->
+![vm-window-popout]({{ "/assets/img/postimages/screenpopsize.png" | relative_url }})
+<!-- _????_ -->
 
 |   |   |
 |---|---|
@@ -107,11 +130,19 @@ Select the VM: > Select: Hardware from Summary drop down: > click Remove.
 |---|---|
 | Hardware | Remove the CD/DVD Drive |
 
+<!-- Insert imagae portraying: Screen shot process from within PVE -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- _????_ -->
+
 Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Agent: > Click Edit: > Check box (Use QEMU Agent) and click OK.
 
 |   |   |
 |---|---|
 | Options | QEMU Guest Agent: (Enable) |
+
+<!-- Insert imagae portraying: Screen shot process from within PVE -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- _????_ -->
 
 # OS install - First Boot
 
@@ -119,6 +150,10 @@ From PROXMOX VE
 
 - Start the VM and begin OS installation
 - Select the VM: > Go to: >_ Console: > START
+
+<!-- Insert imagae portraying: Screen shot process from within PVE -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- _????_ -->
 
 The VM will boot up for the first time and present an instillation menu/wizard. 
 
@@ -148,7 +183,11 @@ Now can choose to continue to OS login where you are prompted for User Name and 
 
 ## Validate OS in PVE
 
-From terminal session, validate operating system is successfully running in proxmox virtual environment.  
+From terminal session, validate operating system is successfully running in proxmox virtual environment. 
+
+<!-- Insert imagae portraying: Screen shot process within PVE and running VM -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- _????_ -->
 
 ```bash
 # Confirm VM sucsessfully running in proxmox environment
@@ -159,6 +198,10 @@ cat /proc/cpuinfo
 
 Complete a full Update & Distribution Upgrade.
 
+<!-- Insert imagae portraying: Screen shot process within PVE and running VM -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- _????_ -->
+
 ```bash
 # Full update and distrobution upgrade
 sudo apt update && sudo apt dist-upgrade
@@ -167,6 +210,10 @@ sudo apt update && sudo apt dist-upgrade
 ## Status check Qemu-Guest-Agent
 
 From terminal session, confirm Qemu-Guest-Agent is installed, alive, and exited.
+
+<!-- Insert imagae portraying: Screen shot process within PVE and running VM (Agent rinning and excited) -->
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+<!-- _????_ -->
 
 ```bash
 # Check status of qemu-guest-agent and start start if required
@@ -386,7 +433,13 @@ The cloning is complete and you now have an identical backup clone of the VM you
 
 # VM Template Creation
 
+<!-- Insert imagae portraying: template creation and concepts -->
+![template-created]({{ "/assets/img/postimages/templatesize.png" | relative_url }})
+<!-- _????_ -->
+
 **From Proxmox server view:** Select VM to be converted to a Template > Right click and select Convert to Template > Click Yes to confirm.
+
+
 
 You now have a template of your fully setup, configured and customized VM. Create identical VMs in moments from this template that are fully featured, secure, and customized to be fit for purpose. Application, Utilities, connectivity and security already in place with next to no effort. It’s all in the preparation. 
 
