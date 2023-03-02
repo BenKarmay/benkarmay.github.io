@@ -9,13 +9,13 @@ tags: [machine-id, ssh host-keys, proxmox]
 Achieving definitive Virtual Machine rendition for clone and template creation.    
 
 <!-- Insert imagae portraying VM/clone rendition -->
-![hupe-prox-kali]({{ "/assets/img/postimages/narcovintage.png" | relative_url }})
+![Clone-Face]({{ "/assets/img/postimages/narcovintage.png" | relative_url }})
 
 # Prerequisites and Scope
 Familiarity with Type 1 Hypervisors, in particular Proxmox will help give context to some of this articles content. Proxmox Virtual Environment and Kali Linux OS are enlisted for our subject exploration but with allowance for some variation, this content will translate well to other hypervisor platforms, ISO-images, and distributions. There are many other techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
 
 <!-- Insert and image in a row of Type 1 hypervisor/Proxmox/Kali Linux -->
-![hupe-prox-kali]({{ "/assets/img/postimages/threerowsize.png" | relative_url }})
+![hype-prox-kali]({{ "/assets/img/postimages/threerowsize.png" | relative_url }})
 
 # Intro
 This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of [Machine-ID](#remove-machine-id) and [SSH Host-Key](#remove-ssh-host_keys) during Virtual Machine creation from a template. We will also explore customisation of OS distribution, installing applications and utilities, and optimising system configurations for use case requirements.
@@ -31,12 +31,12 @@ These are the principal objectives highlighted but we auction them towards the e
 - **Clear Machine-ID:** Every VM should have a unique Machine-ID.  Leaving Machine-ID designated in the template results in duplicate Machine-IDs for every consequent VM. Removing Machine-IDs prior to template creation is a must.
 
 <!-- Insert imagae portraying ??? -->
-![Kity Color]({{ "/assets/img/postimages/kitvintagesize.png" | relative_url }})
+![Kity-Color]({{ "/assets/img/postimages/kitvintagesize.png" | relative_url }})
 
 - **Clear all SSH Host-Keys:** A fresh VM when started for the first time will generate a new set of SSH Host Keys. SSH Host-Keys need to be cleared from the system prior to template creation or risk multiple machines using identical SSH Host-Keys.
 
 <!-- Insert imagae portraying ??? -->
-![Puple Double]({{ "/assets/img/postimages/icanseetwice.gif" | relative_url }})
+![Eyes-Double]({{ "/assets/img/postimages/icanseetwice.gif" | relative_url }})
 
 - **Distribution-Upgrade controls:** Maintain prescribed distribution version during system updates. For rolling versions perform Full-Update and Distribution-Upgrade.
 
