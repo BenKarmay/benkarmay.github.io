@@ -9,13 +9,13 @@ tags: [machine-id, ssh host-keys, proxmox]
 Achieving definitive [Virtual Machine rendition](#create-vm-from-iso-image) for [clone](#backup-clone-creation) and [template creation](#vm-template-creation).    
 
 <!-- Insert imagae portraying VM/clone rendition -->
-![Clone-Face]({{ "/assets/img/postimages/narcovintage.png" | relative_url }})
+![cloneface]({{ "/assets/img/postimages/narcovintage.png" | relative_url }})
 
 # Prerequisites and Scope
 Familiarity with Type 1 Hypervisors, in particular Proxmox will help give context to some of this articles content. Proxmox Virtual Environment and Kali Linux OS are enlisted for our subject exploration but with allowance for some variation, this content will translate well to other hypervisor platforms, ISO-images, and distributions. There are many other techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
 
 <!-- Insert three image in a row: Type 1 hypervisor/Proxmox/Kali Linux -->
-![hype-prox-kali]({{ "/assets/img/postimages/threerowsize.png" | relative_url }})
+![hypeproxkali]({{ "/assets/img/postimages/threerowsize.png" | relative_url }})
 
 # Intro
 This article aims to highlight and walk through important sanitation techniques when working with Virtual Machines. Namely, stopping the duplication of [Machine-IDs](#remove-machine-id) and [SSH Host-Keys](#remove-ssh-host_keys) during Virtual Machine creation from a template. We will also explore customisation of OS distribution, installing applications and utilities, and optimising system configuration for use case.
@@ -31,13 +31,13 @@ These are the principal objectives highlighted but we action them downstream to 
 - **Clear Machine-ID:** Leaving Machine-IDs designated in a template results in duplicate Machine-IDs for every consequent VM. Removing Machine-IDs prior to template creation is a must.
 
 <!-- Insert imagae portraying mashines with differnt IDs -->
-![Kity-Color]({{ "/assets/img/postimages/kitvintagesize.png" | relative_url }})
+![kitycolor]({{ "/assets/img/postimages/kitvintagesize.png" | relative_url }})
 _Every VM should be tainted with a unique Machine-ID_
 
 - **Clear all SSH Host-Keys:** A fresh VM when started for the first time will generate a new set of SSH Host Keys. SSH Host-Keys need to be cleared prior to template creation or risk multiple machines using identical SSH Host-Keys.
 
 <!-- Insert imagae portrayingz:Multiple machines attempting to use the same ssh host key ??? -->
-![Eyes-Double]({{ "/assets/img/postimages/icanseetwice.gif" | relative_url }})
+![eyesdouble]({{ "/assets/img/postimages/icanseetwice.gif" | relative_url }})
 _Multiple Hosts using identical Keys gets weird quickly_ 
 
 - **Distribution-Upgrade controls:** Maintain prescribed distribution version during system updates. For rolling versions perform Full-Update and Distribution-Upgrade.
@@ -61,22 +61,21 @@ Based on a known or expected use case: Install and customize applications, utili
 - [Display settings](#display-settings)
 
 <!-- Insert imagae portraying: Applications and Utilities -->
-![app-tool-kit]({{ "/assets/img/postimages/toolkitwovintsize.png" | relative_url }})
+![apptoolkit]({{ "/assets/img/postimages/toolkitwovintsize.png" | relative_url }})
 <!-- _????_ -->
 
 # ISO-image
 In this section we will download our ISO-image of choice then upload it to the PROXMOX image library.
 
 <!-- Insert imagae portraying: ISO-image icon -->
-![iso-image-icon]({{ "/assets/img/postimages/isoimagevintasize.png" | relative_url }})
+![isoimageicon]({{ "/assets/img/postimages/isoimagevintasize.png" | relative_url }})
 <!-- _????_ -->
 
 ## Download ISO-image
 Download chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder using the link below.
 
 <!-- Insert imagae portraying: Screen shot of Source download -->
-![url-source]({{ "/assets/img/postimages/urhttsized.png" | relative_url }})
-![image-source]({{ "/assets/img/postimages/downloadvintsize.png" | relative_url }})
+![imagesource]({{ "/assets/img/postimages/downloadvintsize.png" | relative_url }})
 <!-- _????_ -->
 
 |   |   |
@@ -90,7 +89,7 @@ Download chosen ISO-image to your local machine. In this case I am downloading K
 Upload the local copy of  your ISO-image to the PROXMOX image library. Within PROXMOX VE navigate to: local node > click on ISO-mage > select Upload and follow popup prompts to complete.
 
 <!-- Insert imagae portraying: Screen shot of PVE image upload -->
-![uploadimage]({{ "/assets/img/postimages/upisovresize.png" | relative_url }})
+![uploadisoimage]({{ "/assets/img/postimages/upisovresize.png" | relative_url }})
 <!-- _????_ -->
 
 *There are numerous methods used to download, upload and add images that are well worth learning and understanding. This example uses asimple and transparent process.*  
