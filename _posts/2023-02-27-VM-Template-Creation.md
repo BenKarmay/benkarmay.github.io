@@ -75,7 +75,7 @@ In this section we will download our ISO-image of choice then upload it to the P
 Download chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder using the link below.
 
 <!-- Insert imagae portraying: Screen shot of Source download -->
-<!-- ![imagesource]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+![imagesource]({{ "/assets/img/postimages/kldownloadcropresize.png" | relative_url }})
 <!-- _????_ -->
 
 |   |   |
@@ -89,7 +89,7 @@ Download chosen ISO-image to your local machine. In this case I am downloading K
 Upload the local copy of  your ISO-image to the PROXMOX image library. Within PROXMOX VE navigate to: local node > click on ISO-mage > select Upload and follow popup prompts to complete.
 
 <!-- Insert imagae portraying: Screen shot of PVE image upload -->
-<!-- ![uploadisoimage]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+![uploadisoimage]({{ "/assets/img/postimages/uploadcropresize.png" | relative_url }})
 <!-- _????_ -->
 
 *There are numerous methods used to download, upload and add images that are well worth learning and understanding. This example uses asimple and transparent process.*  
@@ -100,11 +100,11 @@ Upload the local copy of  your ISO-image to the PROXMOX image library. Within PR
 Create the VM that will be customized for cloning and template creation. Within PROXMOX API click on ‘Create VM’ button and follow the wizard, populating fields as detailed in below example. Change input as required in accordance with your use-case, resources availability, and conventions. 
 
 <!-- Insert imagae portraying: A VM being created -->
-![vm-window-popout]({{ "/assets/img/postimages/screenpopsize.png" | relative_url }})
+<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
 <!-- _????_ -->
 
 <!-- Insert imagae portraying: Screen shot of ISO setup within PVE  -->
-<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+![vmcreation]({{ "/assets/img/postimages/createvmcropresize.png" | relative_url }})
 <!-- _????_ -->
 
 |   |   |
@@ -135,7 +135,7 @@ Select the VM: > Select: Hardware from Summary drop down: > click Remove.
 | Hardware | Remove the CD/DVD Drive |
 
 <!-- Insert imagae portraying: Screen shot process from within PVE -->
-<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+![removecd]({{ "/assets/img/postimages/remocecdresize.png" | relative_url }})
 <!-- _????_ -->
 
 Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Agent: > Click Edit: > Check box (Use QEMU Agent) and click OK.
@@ -145,7 +145,7 @@ Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Age
 | Options | QEMU Guest Agent: (Enable) |
 
 <!-- Insert imagae portraying: Screen shot process from within PVE -->
-<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+![qemuenable]({{ "/assets/img/postimages/qemyenableresize.png" | relative_url }})
 <!-- _????_ -->
 
 # OS install - First Boot
@@ -156,10 +156,14 @@ From PROXMOX VE
 - Select the VM: > Go to: >_ Console: > START
 
 <!-- Insert imagae portraying: Screen shot process from within PVE -->
-<!-- ![descriptivename]({{ "/assets/img/postimages/.png" | relative_url }}) -->
+![startvm]({{ "/assets/img/postimages/startforstbootresize.png" | relative_url }})
 <!-- _????_ -->
 
 The VM will boot up for the first time and present an instillation menu/wizard. 
+
+<!-- Insert imagae portraying: Screen shot of icon vm startup -->
+![vmstartup]({{ "/assets/img/postimages/screenpopsize.png" | relative_url }})
+<!-- _????_ -->
 
 - Select **Manual Install** and follow prompts populating fields as detailed in below example. i.e. Change input as required, according to your preference.
 
@@ -432,6 +436,10 @@ sudo apt autoremove
 Template creation is a destructive process so as a precaution, I first make a backup Clone of the VM intended for conversion to template. This way if for some reason the templating process fails or is interrupted, my origin VM remains intact. 
 
 **From Proxmox server view:** Select VM prepared for cloning > Right click and select clone > Follow the wizard prompts > Click on Clone to finish.
+
+<!-- Insert imagae portraying: template creation and concepts -->
+![backupclone]({{ "/assets/img/postimages/clonevmcropresize.png" | relative_url }})
+<!-- _????_ -->
 
 The cloning is complete and you now have an identical backup clone of the VM you intend to transform to a template.
 
