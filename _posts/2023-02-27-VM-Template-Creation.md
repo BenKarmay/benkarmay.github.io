@@ -61,21 +61,21 @@ Based on a known or expected use case: Install and customize applications, utili
 - [Display settings](#display-settings)
 
 <!-- Insert imagae portraying: Applications and Utilities -->
-![apptoolkit]({{ "/assets/img/postimages/toolkitwovintsize.png" | relative_url }})
+<!-- ![apptoolkit]({{ "/assets/img/postimages/.png" | relative_url }}) -->
 <!-- _????_ -->
 
 # ISO-image
 In this section we will download our ISO-image of choice then upload it to the PROXMOX image library.
 
 <!-- Insert imagae portraying: ISO-image icon -->
-![isoimageicon]({{ "/assets/img/postimages/isoimagevintasize.png" | relative_url }})
+<!-- ![isoimageicon]({{ "/assets/img/postimages/.png" | relative_url }}) -->
 <!-- _????_ -->
 
 ## Download ISO-image
 Download chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder using the link below.
 
 <!-- Insert imagae portraying: Screen shot of Source download -->
-![imagesource]({{ "/assets/img/postimages/downloadvintsize.png" | relative_url }})
+<!-- ![imagesource]({{ "/assets/img/postimages/.png" | relative_url }}) -->
 <!-- _????_ -->
 
 |   |   |
@@ -89,7 +89,7 @@ Download chosen ISO-image to your local machine. In this case I am downloading K
 Upload the local copy of  your ISO-image to the PROXMOX image library. Within PROXMOX VE navigate to: local node > click on ISO-mage > select Upload and follow popup prompts to complete.
 
 <!-- Insert imagae portraying: Screen shot of PVE image upload -->
-![uploadisoimage]({{ "/assets/img/postimages/upisovresize.png" | relative_url }})
+<!-- ![uploadisoimage]({{ "/assets/img/postimages/.png" | relative_url }}) -->
 <!-- _????_ -->
 
 *There are numerous methods used to download, upload and add images that are well worth learning and understanding. This example uses asimple and transparent process.*  
