@@ -7,16 +7,17 @@ layout:
 categories: [Virtual Machine, Hypervisor]
 tags: [machine-id, ssh host-keys, proxmox]
 ---
+
 ### Achieving definitive [Virtual Machine Rendition](#create-vm-from-iso-image) for [Clone](#backup-clone-creation) and [Template Creation](#vm-template-creation).  
 
 <!-- Insert imagae portraying VM/clone rendition -->
-![copyclone]({{ "/assets/img/postimages/indiclone.gif" | relative_url }}){:width="60%"}
+<!-- ![copyclone]({{ "/assets/img/postimages/indiclone.gif" | relative_url }}){:width="60%"} -->
 
 # Prerequisites and Scope
 Familiarity with Type 1 Hypervisors, in particular Proxmox will help give context to some of this articles content. Proxmox Virtual Environment and Kali Linux OS are enlisted for our subject exploration but with allowance for some variation, this content will translate well to other hypervisor platforms, ISO-images, and distributions. There are many other techniques for pre-configuring and automating virtual machine cloning and template creation that are well worth learning but they are out of scope for this article.
 
 <!-- Insert imagae portraying VM/clone rendition -->
-![copyclone]({{ "/assets/img/postimages/topintroimage.png" | relative_url }})
+![copyclone]({{ "/assets/img/postimages/topintroimage.png" | relative_url }}){:width="70%"}
 
 
 # Intro
@@ -76,7 +77,7 @@ In this section we will download our ISO-image of choice and upload it to the PR
 Download chosen ISO-image to your local machine. In this case I am downloading Kali Linux to my downloads folder using the link below.
 
 <!-- Insert imagae portraying: Screen shot of Source download -->
-![imagesource]({{ "/assets/img/postimages/isoimagedownload.png" | relative_url }}){:width="60%"}
+![imagesource]({{ "/assets/img/postimages/isoimagedownload.png" | relative_url }}){:width="40%"}
 <!-- _????_ -->
 
 |   |   |
@@ -90,8 +91,9 @@ Download chosen ISO-image to your local machine. In this case I am downloading K
 Upload the local copy of  your ISO-image to the PROXMOX image library. Within PROXMOX VE navigate to: local node > click on ISO-mage > select Upload and follow popup prompts to complete.
 
 <!-- Insert imagae portraying: Screen shot of PVE image upload -->
-![uploadisoimage]({{ "/assets/img/postimages/uploadisocrop.png" | relative_url }}){:width="60%"}
-_There are numerous methods used to download, upload and add images that are well worth learning and understanding. This example uses a simple and straightforward method._  
+![uploadisoimage]({{ "/assets/img/postimages/uploadisocrop.png" | relative_url }}){:width="70%"}
+
+There are numerous methods used to download, upload and add images that are well worth learning and understanding. This example uses a simple and straightforward method. 
 
 
 # Create VM from ISO-image
@@ -99,7 +101,7 @@ Create the VM that will be customized for cloning and template creation. Within 
 
 
 <!-- Insert image portraying: Screen shot of ISO setup within PVE  -->
-![vmcreation]({{ "/assets/img/postimages/vmcreateshow.png" | relative_url }}){:width="60%"}
+![vmcreation]({{ "/assets/img/postimages/vmcreateshow.png" | relative_url }}){:width="70%"}
 <!-- _????_ -->
 
 |   |   |
@@ -130,7 +132,7 @@ Select the VM: > Select: Hardware from Summary drop down: > click Remove.
 | Hardware | Remove the CD/DVD Drive |
 
 <!-- Insert imagae portraying: Screen shot process from within PVE -->
-![removecd]({{ "/assets/img/postimages/remocecd.png" | relative_url }}){:width="60%"}
+![removecd]({{ "/assets/img/postimages/remocecd.png" | relative_url }}){:width="70%"}
 <!-- _????_ -->
 
 Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Agent: > Click Edit: > Check box (Use QEMU Agent) and click OK.
@@ -140,7 +142,7 @@ Select the VM: > Select: Options from Summary drop down: > Select QEMU Guest Age
 | Options | QEMU Guest Agent: (Enable) |
 
 <!-- Insert imagae portraying: Screen shot process from within PVE -->
-![qemuenable]({{ "/assets/img/postimages/qemyenable.png" | relative_url }}){:width="60%"}
+![qemuenable]({{ "/assets/img/postimages/qemyenable.png" | relative_url }}){:width="70%"}
 <!-- _????_ -->
 
 # OS install - First Boot
@@ -150,7 +152,7 @@ From PVE
 - Select the VM: > Go to: >_ Console: > START.
 
 <!-- Insert imagae portraying: Screen shot process from within PVE -->
-![startvm]({{ "/assets/img/postimages/startforstboot.png" | relative_url }}){:width="60%"}
+![startvm]({{ "/assets/img/postimages/startforstboot.png" | relative_url }}){:width="70%"}
 <!-- _????_ -->
 The VM will boot up for the first time and present an installation menu/wizard. 
 
@@ -229,10 +231,12 @@ sudo apt install qemu-guest-agent
 Uncomplicated Fire Wall (UFW), is an efficient and user friendly utility to confirm firewall defaults are correct and enabled. To install, complete the following from terminal session.
 
 ## **Install UFW**
+
 ```bash
 sudo apt-get install ufw
 sudo ufw status verbose
 sudo ufw enable
+
 ```
 
 ## **Install GUFW** GUI extension for UFW utility
@@ -244,6 +248,7 @@ sudo gufw
 # Network & Connectivity
 
 # Configure proxychains4
+
 *(Optional depending on use case)*
 
 Navigate to configuration file **proxychains4.conf.**  
@@ -284,6 +289,7 @@ sysctl -p
 ```
 
 # Install Tor Tor Browser-Launcher
+
 *(Optional depending on use case)*
 
 From the terminal session run the following commands.
@@ -409,11 +415,11 @@ Template creation is a destructive process so as a precaution, make a backup clo
 **From PROXMOX server view:** Select VM prepared for cloning > Right click and select clone > Follow the wizard prompts > Click on Clone to finish.
 
 <!-- Insert imagae portraying: template creation and concepts -->
-![backupclone]({{ "/assets/img/postimages/clonecreatetwo.png" | relative_url }}){:width="60%"}
+![backupclone]({{ "/assets/img/postimages/clonecreatetwo.png" | relative_url }}){:width="70%"}
 <!-- _????_ -->
 
 <!-- Insert imagae portraying: template creation and concepts -->
-![backupclone]({{ "/assets/img/postimages/clonecreateone.png" | relative_url }}){:width="60%"}
+![backupclone]({{ "/assets/img/postimages/clonecreateone.png" | relative_url }}){:width="70%"}
 <!-- _????_ -->
 
 The cloning is complete and you now have an identical backup clone of the VM you intend to transform to a template.
@@ -424,11 +430,11 @@ The cloning is complete and you now have an identical backup clone of the VM you
 **From PROXMOX server view:** Select the VM to be converted to a Template > Right click and select Convert to Template > Click Yes to confirm.
 
 <!-- Insert imagae portraying: template creation and concepts -->
-![template-created]({{ "/assets/img/postimages/converttemplatetwo.png" | relative_url }}){:width="60%"}
+![template-created]({{ "/assets/img/postimages/converttemplatetwo.png" | relative_url }}){:width="70%"}
 <!-- _????_ -->
 
 <!-- Insert imagae portraying: template creation and concepts -->
-![template-created]({{ "/assets/img/postimages/converttemplateone.png" | relative_url }}){:width="60%"}
+![template-created]({{ "/assets/img/postimages/converttemplateone.png" | relative_url }}){:width="70%"}
 <!-- _????_ -->
 
 You now have a template of your fully setup, configured and customized VM. You can create identical VMs that are fully featured, secure, and customized to be fit for purpose in moments from this template. Application, utilities, connectivity and security are already in place with next to no effort. It’s all in the preparation. 
@@ -449,5 +455,4 @@ The VM install, configuration, cloning, template creation, and workflow outlined
 
 [**Sheridan Computers** for an excellent video walk through of bare-metal encrypted disk install of Kali Linux.](https://youtu.be/8N9jKWm-cKY)
 
-This artical is still being finalised so please let me know if I have used any content that requires source atribution. I will ettempt to acknowledge and support the creators of any content I have used or referenced. 
-
+This artical is still being finalised so please let me know if I have used any content that requires source atribution. I will ettempt to acknowledge and support the creators of any content I have used or referenced.
