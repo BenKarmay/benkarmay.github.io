@@ -1,5 +1,5 @@
 ---
-layout:
+layout: Default
 title: "Virtual Machine Clone & Template Creation" 
 date: 2023-02-24
 categories: [Virtual Machine, Hypervisor]
