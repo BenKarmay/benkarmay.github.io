@@ -18,9 +18,9 @@ timezone: Australia/Victoria
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Ulterior Trace                          # the main title
+title:                       # the main title
 
-tagline: avail infosec   # it will display as the sub-title
+tagline:   # it will display as the sub-title
 
 description: >-                       # used by seo meta and the atom feed
   
