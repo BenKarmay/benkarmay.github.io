@@ -20,7 +20,9 @@ timezone: Australia/Melbourne
 
 title: Ulterior Trace                    # the main title
 
+
 tagline: avail infosec   # it will display as the sub-title
+
 
 description: >-                       # used by seo meta and the atom feed
   
